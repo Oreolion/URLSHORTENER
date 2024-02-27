@@ -1,6 +1,6 @@
 import { createRouter, createWebHashHistory } from "vue-router";
 import LandingPage from "../views/LandingPage.vue";
-// import Dashboard from "../layouts/dashboard.vue";
+import Dashboard from "../views/Dashboard.vue";
 import NotFound from "../views/NotFound.vue";
 import SignupPageVue from "../views/Signup.vue";
 import LoginVue from "../views/Login.vue";
@@ -16,14 +16,14 @@ const router = createRouter({
 
     { path: "/login", name: "login-page", component: LoginVue },
     { path: "/signup", name: "signup-page", component: SignupPageVue },
-    // {
-    //   path: "/dashboard",
-    //   name: "dash-board",
-    //   component: Dashboard,
-    //   meta: { requiresAuth: true },
-    // //   children: [
-    // //   ],
-    // },
+    {
+      path: "/dashboard",
+      name: "dash-board",
+      component: Dashboard,
+      meta: { requiresAuth: true },
+    //   children: [
+    //   ],
+    },
     
     { path: "/:pathMatch(.*)*", name: "not-found", component: NotFound },
   ],

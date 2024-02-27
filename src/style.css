@@ -960,6 +960,10 @@ footer p {
     visibility: hidden;
   }
 
+  .footer {
+    text-align: center;
+  }
+
   .footerright {
     display: flex;
     flex-direction: column;
@@ -986,4 +990,6 @@ footer p {
     text-align: center;
     margin-right: 2rem;
   }
+
+
 }

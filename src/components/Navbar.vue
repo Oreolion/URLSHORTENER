@@ -19,8 +19,8 @@
                 </nav>
     
                 <div class="navbuttons">
-                    <div class="loginbtn">Log in</div>
-                    <button class="trybtn">Try for free</button>
+                    <div class="loginbtn"><router-link to="/login">Log in</router-link></div>
+                    <button class="trybtn"><router-link to="/signup">Try for free</router-link></button>
                 </div>
             </header>
 </template>

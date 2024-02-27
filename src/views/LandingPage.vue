@@ -1,6 +1,6 @@
 <template>
-  <Navbar></Navbar>
   <div class="wrapper">
+    <Navbar></Navbar>
     <HeroSection></HeroSection>
     <SecondSection></SecondSection>
     <CardSection></CardSection>

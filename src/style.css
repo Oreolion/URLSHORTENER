@@ -24,7 +24,7 @@ header {
 }
 
 p {
-  font-family: 'Gilroy-Medium', sans-serif;
+  font-family: "Gilroy-Medium", sans-serif;
 }
 
 ul {
@@ -46,7 +46,7 @@ button {
 }
 
 button:hover {
-  opacity: .5;
+  opacity: 0.5;
 }
 
 .hero-section {
@@ -142,7 +142,7 @@ header .navlist {
 }
 
 .top-herosection p {
-  font-size: .9rem;
+  font-size: 0.9rem;
   font-weight: bold;
   max-width: 40rem;
   text-align: center;
@@ -622,7 +622,6 @@ header .navlist {
   font-size: 1.8rem;
   margin-bottom: 2rem;
   position: relative;
-  
 }
 
 .faq-section .line {
@@ -648,7 +647,7 @@ header .navlist {
 .faq-section .accordionlist li > span:first-child {
   margin-right: 8rem;
   font-size: 0.9rem;
-  font-family: 'Gilroy-Medium', sans-serif;
+  font-family: "Gilroy-Medium", sans-serif;
 }
 
 .faq-section .accordionlist li > span:nth-of-type(2) {
@@ -663,7 +662,6 @@ header .navlist {
 }
 
 .faq-section .accordionlist li p {
-  
   font-size: 0.8rem;
   visibility: hidden;
 }
@@ -815,10 +813,10 @@ footer {
 }
 
 .footerright li {
-  font-size: .9rem;
-  margin-bottom: .5rem;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
   white-space: nowrap;
-  font-family: 'Gilroy-Regular', sans-serif;
+  font-family: "Gilroy-Regular", sans-serif;
 }
 
 footer p {
@@ -924,7 +922,10 @@ footer p {
     padding: 1rem 2rem;
   }
 
-  .form-section .img1,  .form-section .img3, .form-section .img4, .form-section .img5 {
+  .form-section .img1,
+  .form-section .img3,
+  .form-section .img4,
+  .form-section .img5 {
     visibility: hidden;
   }
   .accordionlist {
@@ -937,7 +938,7 @@ footer p {
 
   .faq-section {
     width: 18rem;
-    margin: 1rem 2rem;
+    margin: 1rem auto;
     padding-left: 1rem;
     padding: 1rem 3rem;
   }
@@ -951,7 +952,11 @@ footer p {
     text-align: center;
   }
 
-  .bottom-section .btmimg1, .bottom-section .btmimg2, .bottom-section .btmimg3, .bottom-section .btmimg4, .bottom-section .btmimg5 {
+  .bottom-section .btmimg1,
+  .bottom-section .btmimg2,
+  .bottom-section .btmimg3,
+  .bottom-section .btmimg4,
+  .bottom-section .btmimg5 {
     visibility: hidden;
   }
 
@@ -965,9 +970,14 @@ footer p {
     padding: 5rem;
     flex-direction: column;
     gap: 5rem;
+    /* align-items: center;
+    justify-content: center; */
   }
 
-  .footerimg1, .footerimg6, .footerimg5, .footerimg4 {
+  .footerimg1,
+  .footerimg6,
+  .footerimg5,
+  .footerimg4 {
     visibility: hidden;
   }
 
@@ -976,5 +986,4 @@ footer p {
     text-align: center;
     margin-right: 2rem;
   }
-  
 }

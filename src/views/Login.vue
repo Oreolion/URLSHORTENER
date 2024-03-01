@@ -37,10 +37,15 @@
                 placeholder="Password"
               />
               <small
-                style="color: #1974fe; align-self: flex-end; margin-bottom: 1rem"
+                style="
+                  color: #1974fe;
+                  align-self: flex-end;
+                  margin-bottom: -1rem;
+                "
                 >Forgot your password?</small
               >
-              <small v-if="v$.password.$errors.length">{{
+              <small v-if="v$.password.$errors.length"  style="
+                  color: red;">{{
                 v$.password.$errors[0].$message
               }}</small>
             </label>
@@ -209,6 +214,5 @@ form .header {
 }
 
 @media (max-width: 640px) {
-    
 }
 </style>

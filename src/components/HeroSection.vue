@@ -13,7 +13,7 @@
       your brand presence and enhance user engagement.
     </p>
     <div class="hero-btn">
-      <button class="btn">Sign Up</button>
+      <button class="btn"> <router-link to="/signup" style="color: #fff;">Sign Up</router-link></button>
       <a href="#">Learn more</a>
     </div>
   </div>

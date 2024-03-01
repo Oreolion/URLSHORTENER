@@ -7,7 +7,7 @@
             <img class="btmimg5" src="../assets/Vector411.png" alt="/">
             <img class="btmimg6" src="../assets/Vector441.png" alt="/">
             <h4>Revolutionizing Link Optimization</h4>
-            <button>Get Started</button>
+            <button><router-link to="/signup" style="color: #fff;">Get Started</router-link></button>
         </section>
 </template>
 
@@ -16,5 +16,6 @@
 </script>
 
 <style scoped>
+
 
 </style>

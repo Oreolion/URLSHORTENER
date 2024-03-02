@@ -5,7 +5,6 @@
       <div></div>
       <h3>SCISSORS</h3>
     </div>
-   
 
     <ul class="dashboard__navlists">
       <h5>Overview</h5>
@@ -59,7 +58,7 @@
           Analytics
         </router-link>
       </li>
-      
+
       <h5>Personal</h5>
 
       <li>
@@ -116,12 +115,12 @@ const handleLogout = async () => {
 
 <style scoped>
 .logo {
-  /* color: #e67e22; */
   font-weight: bold;
   font-size: 1.6rem;
   margin-right: auto;
   display: flex;
-  gap: .5rem;
+  gap: 0.5rem;
+  color: #1974fe;
 }
 
 h3 {
@@ -141,7 +140,7 @@ h3 {
   padding: 2rem 3rem;
   width: 17rem;
   height: 100vh;
-  background-color: #000;
+  background-color: #1974fe;
   color: #fff;
   font-size: 1.2rem;
   display: flex;
@@ -153,7 +152,8 @@ h3 {
   margin: 2rem 0;
 }
 
-.logo p, li {
+.logo p,
+li {
   font-size: 1rem;
   color: #fff;
 }
@@ -171,6 +171,10 @@ h3 {
   cursor: pointer;
   font-weight: bold;
   color: #ddd;
+}
+
+.dashboard__navlists p, .dashboard__navlists h5 {
+  color: #fff;
 }
 
 .dashboard__navlists .link svg {
@@ -196,6 +200,7 @@ h3 {
 .dashboard__navlists .link li {
   display: flex;
   align-items: center;
+  color: #fff;
   &:hover {
     color: var(--primary);
   }

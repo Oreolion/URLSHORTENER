@@ -135,7 +135,7 @@
 
       <div class="img__box">
         <router-link to="/dashboard/accountprofile">
-          <span class="" v-if="!profile.photoURL">R.A</span>
+          <span class="" v-if="!profile.photoURL"></span>
 
           <img :src="profile.photoURL" alt="photo-url" class="" v-else />
         </router-link>
@@ -184,7 +184,6 @@ onAuthStateChanged(auth, (user) => {
 
 <style scoped>
 .logo {
-  color: #e67e22;
   font-size: 2rem;
   margin-right: auto;
 }
@@ -192,7 +191,6 @@ onAuthStateChanged(auth, (user) => {
 .logo h3 {
   line-height: 1;
   letter-spacing: 0.7;
-  /* color: #e67e22; */
 }
 
 .logo p {
@@ -207,9 +205,9 @@ onAuthStateChanged(auth, (user) => {
   padding: 3rem;
   width: 17rem;
   height: 100vh;
-  background-color: #000;
+  background-color: #1974fe;
   color: #ccc;
-  font-size: 1.4rem;
+  font-size: 1rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -218,8 +216,10 @@ onAuthStateChanged(auth, (user) => {
 
 .logo {
   margin: 2rem 0 -2rem;
-  color: #e67e22;
+  color: #fff;
   display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .logo p {
@@ -244,13 +244,18 @@ onAuthStateChanged(auth, (user) => {
   }
 }
 
+.dashboard__navlists p, .dashboard__navlists h5 {
+  color: #fff;
+}
+
+
 .dashboard__navlists .link svg {
   background-color: #fff;
   color: red;
-  height: 2.3rem;
+  height: 2rem;
   border-radius: 50%;
   padding: 0.2rem;
-  width: 2.3rem;
+  width: 2rem;
 }
 
 .dashboard__navlists li:last-child {
@@ -270,7 +275,6 @@ onAuthStateChanged(auth, (user) => {
   left: 8rem;
   right: -14rem;
   background: #bbb;
-  /* box-shadow: var(--box-shadow); */
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -304,7 +308,7 @@ onAuthStateChanged(auth, (user) => {
   color: #fff;
   top: 11%;
   left: 22%;
-  background: rgba(0, 0, 015, 0.5);
+  background: #1974fe;
   text-align: center;
   padding-top: 3rem;
   /* z-index: 111; */
@@ -321,7 +325,7 @@ onAuthStateChanged(auth, (user) => {
   position: absolute;
   top: 11%;
   right: 5%;
-  background: rgba(0, 0, 015, 0.5);
+  background: #1974fe;
   text-align: center;
   padding-top: 1rem;
   z-index: 1111;
@@ -388,7 +392,7 @@ svg {
   height: 5rem;
   width: 5rem;
   border-radius: 50%;
-  background-color: #000;
+  background-color: #1974fe;
 }
 
 .img__box img {
@@ -403,21 +407,15 @@ svg {
   .logo {
     margin-top: 1rem;
     margin-bottom: 1rem;
-    color: #e67e22;
-    /* margin-left: -2rem; */
   }
 
   .logo h3 {
     white-space: nowrap;
   }
 
-  .logo p {
-    white-space: nowrap;
-  }
 
   .innerdashboard__container .header .logo {
     margin-bottom: 1rem;
-    color: #e67e22;
     max-width: 18rem;
     font-weight: bold;
     display: flex;
@@ -429,11 +427,6 @@ svg {
     font-size: 2rem;
   }
 
-  .innerdashboard__container .header .logo p {
-    font-size: 1.1rem;
-    letter-spacing: 1px;
-    padding-left: 4px;
-  }
 
   .nav__icons .menu-bar svg {
     display: flex;
@@ -441,9 +434,7 @@ svg {
     width: 2rem;
   }
 
-  .mobile {
-    display: flex;
-  }
+ 
 
   .dashboard__nav {
     display: none;
@@ -453,6 +444,7 @@ svg {
     display: flex;
   }
 
+  
   svg {
     display: flex;
   }
@@ -465,12 +457,15 @@ svg {
   .header .img__box {
     height: 5rem;
     width: 5rem;
+    margin-left: 2rem;
+
   }
 
-  .post {
-    width: 40rem;
-    padding-left: 20rem;
+  .right__nav {
+    gap: 7rem;
   }
+
+
 }
 
 @media (max-width: 480px) {

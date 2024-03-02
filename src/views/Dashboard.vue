@@ -1,9 +1,25 @@
 <template>
-  <div>
-    <h1>This is the dashboard page</h1>
-  </div>
+  <section class="dashboard__continer">
+    <DashboardNav></DashboardNav>
+    <HeaderAndNav></HeaderAndNav>
+  </section>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import DashboardNav from '../components/DashboardNav.vue';
+import HeaderAndNav from '../components/HeaderAndNav.vue';
+</script>
 
-<style scoped></style>
+<style scoped>
+
+/* *, section {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+} */
+
+.dashboard__container {
+
+}
+
+</style>

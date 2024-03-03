@@ -171,6 +171,9 @@ li {
   cursor: pointer;
   font-weight: bold;
   color: #ddd;
+  &:hover {
+    letter-spacing: 1px;
+  }
 }
 
 .dashboard__navlists p, .dashboard__navlists h5 {

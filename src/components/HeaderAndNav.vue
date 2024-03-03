@@ -134,11 +134,9 @@
       </nav>
 
       <div class="img__box">
-        <router-link to="/dashboard/accountprofile">
-          <span class="" v-if="!profile.photoURL"></span>
+        <span class="" v-if="!profile.photoURL"></span>
 
-          <img :src="profile.photoURL" alt="photo-url" class="" v-else />
-        </router-link>
+        <img :src="profile.photoURL" alt="photo-url" class="" v-else />
       </div>
     </header>
   </main>
@@ -244,10 +242,10 @@ onAuthStateChanged(auth, (user) => {
   }
 }
 
-.dashboard__navlists p, .dashboard__navlists h5 {
+.dashboard__navlists p,
+.dashboard__navlists h5 {
   color: #fff;
 }
-
 
 .dashboard__navlists .link svg {
   background-color: #fff;
@@ -274,7 +272,7 @@ onAuthStateChanged(auth, (user) => {
   top: -1rem;
   left: 8rem;
   right: -14rem;
-  background: #bbb;
+  background: rgb(193, 193, 233);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -290,8 +288,6 @@ onAuthStateChanged(auth, (user) => {
 .innerdashboard__container .header p {
   min-width: 2rem;
 }
-
-
 
 .right__nav {
   display: flex;
@@ -413,7 +409,6 @@ svg {
     white-space: nowrap;
   }
 
-
   .innerdashboard__container .header .logo {
     margin-bottom: 1rem;
     max-width: 18rem;
@@ -427,14 +422,11 @@ svg {
     font-size: 2rem;
   }
 
-
   .nav__icons .menu-bar svg {
     display: flex;
     height: 2rem;
     width: 2rem;
   }
-
- 
 
   .dashboard__nav {
     display: none;
@@ -444,7 +436,6 @@ svg {
     display: flex;
   }
 
-  
   svg {
     display: flex;
   }
@@ -455,17 +446,14 @@ svg {
   }
 
   .header .img__box {
-    height: 5rem;
-    width: 5rem;
+    height: 4.5rem;
+    width: 4.5rem;
     margin-left: 2rem;
-
   }
 
   .right__nav {
     gap: 7rem;
   }
-
-
 }
 
 @media (max-width: 480px) {
@@ -483,8 +471,6 @@ svg {
   .dashboard__nav {
     width: 17rem;
   }
-
- 
 
   .header .nav__icons {
     right: 22%;

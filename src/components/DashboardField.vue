@@ -5,13 +5,17 @@
       <form action="">
         <label for="">
           Input Your Link: <br />
-          <input type="text" placeholder="e.g. https://developer.mozilla.org/en-US/docs/Web"/>
-          <button>Shorten Link</button>
+          <input
+            v-model="inputUrl"
+            type="text"
+            placeholder="e.g. https://developer.mozilla.org/en-US/docs/Web"
+          />
+          <button @click="handleLinkShortener">Shorten Link</button>
         </label>
 
         <label for=""
           >Shortened Link: <br />
-          <input type="text" />
+          <input type="text" v-model="outputUrl" />
           <button>Copy Link</button>
         </label>
       </form>
@@ -19,7 +23,106 @@
   </section>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import axios from "axios";
+import { ref, reactive } from "vue";
+import {
+  getDocs,
+  setDoc, doc,
+  collection,
+  onSnapshot,
+  orderBy,
+  query,
+} from "firebase/firestore";
+import { db } from "../utils/firebase";
+
+interface myUrls {
+  shortUrl: string;
+  longUrl: string;
+}
+
+const inputUrl = ref("");
+const outputUrl = ref("");
+
+const myUrls: myUrls[] = reactive([]);
+
+const createUrl = async (data: { longUrl: string; shortUrl: string }) => {
+  try {
+    await setDoc(doc(db, "myUrls", "gupoXRsKklnGbvQtWccA" ), data);
+    console.log(db);
+    console.log(data);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const handleUpdateUrls = async () => {
+  const urlRef = collection(db, "myUrls");
+  const urlQuery = query(urlRef, orderBy("createdAt", "asc"));
+
+  // Get initial data
+  const querySnapshot = await getDocs(urlRef);
+
+  if (querySnapshot) {
+    querySnapshot.docs.map((doc: any) => {
+      console.log(doc.id, " => ", doc.data());
+      myUrls.push(doc.data() as myUrls);
+    });
+  } else {
+    console.log("No such document!");
+  }
+
+  console.log(myUrls);
+
+  onSnapshot(urlQuery, (snapshot) => {
+    snapshot.docs.map((doc) => {
+      myUrls.push(doc.data() as myUrls);
+    });
+    console.log(myUrls);
+  }),
+    (error: any) => {
+      console.log(error);
+    };
+};
+
+const shortenUrl = async () => {
+  const endpoint = "https://api-ssl.bitly.com/v4/shorten";
+  const accessToken = "4e8b64db46cf45337c5fcdc3ad50be2a9e7525b9";
+
+  try {
+    const response = await axios.post(
+      endpoint,
+      {
+        long_url: inputUrl.value,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    console.log(response);
+    outputUrl.value = response.data.link;
+    handleUpdateUrls();
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+const handleLinkShortener = async () => {
+  await shortenUrl();
+
+  createUrl({
+    longUrl: inputUrl.value,
+    shortUrl: outputUrl.value,
+  });
+
+//   inputUrl.value = "";
+//   outputUrl.value = "";
+};
+</script>
 
 <style scoped>
 section {
@@ -67,10 +170,9 @@ button {
   width: 30%;
 }
 
-
 @media (max-width: 768px) {
-    .inner__dashboard {
-        margin-left: 1rem;
-    }
+  .inner__dashboard {
+    margin-left: 1rem;
+  }
 }
 </style>

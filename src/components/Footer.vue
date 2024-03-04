@@ -103,7 +103,7 @@
                     </div>
                 </div>
             </div>
-            <p>Term of Service   | Security |  Scissor 2023</p>
+            <p>Term of Service   | Security |  Scissor 2024</p>
         </footer>
 </template>
 

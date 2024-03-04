@@ -14,14 +14,4 @@ import HeaderAndNav from '../components/HeaderAndNav.vue';
 
 <style scoped>
 
-/* *, section {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-} */
-
-.dashboard__container {
-
-}
-
 </style>

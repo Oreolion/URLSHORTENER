@@ -145,6 +145,7 @@ section {
 h1 {
   font-size: 2rem;
   margin-bottom: 4rem;
+  color: #fff;
 }
 
 form {
@@ -156,6 +157,11 @@ form {
 }
 
 label {
+    color: yellow;
+}
+
+label + label {
+    color: green;
 }
 
 input {
@@ -166,6 +172,10 @@ input {
   text-indent: 0.5rem;
 }
 
+label + label > input {
+    color: green;
+}
+
 button {
   width: 30%;
 }
@@ -173,6 +183,34 @@ button {
 @media (max-width: 768px) {
   .inner__dashboard {
     margin-left: 1rem;
+    width: 85%;
   }
+}
+@media (max-width: 480px) {
+  .inner__dashboard {
+    margin-left: 1rem;
+    width: 85%;
+  }
+
+
+  input {
+    width: 60%;
+  }
+
+  
+button {
+  width: 30%;
+}
+
+form {
+    padding: 0 1rem;
+}
+}
+
+
+@media (max-width: 320px ) {
+    h1 {
+        font-size: 1.7rem;
+    }
 }
 </style>

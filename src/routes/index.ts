@@ -4,6 +4,7 @@ import Dashboard from "../views/Dashboard.vue";
 import NotFound from "../views/NotFound.vue";
 import SignupPageVue from "../views/Signup.vue";
 import LoginVue from "../views/Login.vue";
+import LinksPage from "../views/LinksPage.vue";
 import CustomUrlPage from "../views/CustomUrlPage.vue";
 import QRcodePage from "../views/QRcodePage.vue";
 
@@ -36,6 +37,13 @@ const router = createRouter({
         path: "/dashboard/qrcodepage",
         name: "grcode-page",
         component: QRcodePage,
+        meta: { requiresAuth: true },
+
+      },
+      {
+        path: "/dashboard/linkspage",
+        name: "links-page",
+        component: LinksPage,
         meta: { requiresAuth: true },
 
       },

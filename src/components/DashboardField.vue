@@ -143,6 +143,7 @@ section {
   align-items: center;
   justify-content: center;
   background: rgba(4, 4, 168, 0.2);
+  box-shadow: 0px 7px 12px rgba(68, 68, 241, 0.3);
   height: 25rem;
   width: 60%;
   margin-left: 12rem;

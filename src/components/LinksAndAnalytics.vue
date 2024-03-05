@@ -76,6 +76,7 @@ section {
   flex-direction: column;
   align-items: center;
   background: rgba(4, 4, 168, 0.2);
+  box-shadow: 0px 7px 12px rgba(68, 68, 241, 0.3);
   height: 29rem;
   width: 70%;
   margin-left: 12rem;

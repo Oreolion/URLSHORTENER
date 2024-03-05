@@ -1,10 +1,22 @@
 <template>
   <section>
     <div class="inner__dashboard">
-      <h1>this is the links and analytics view</h1>
-      <ul v-for="url in myUrls" :key="url" class="links__box">
-        <li>Long Url: {{ url.longUrl }}</li>
-        <li>Short Url:{{ url.shortUrl }}</li>
+      <h1>SHORTENED LINKS AND ANALYTICS</h1>
+      <div class="box">
+        <ul v-for="url in myUrls" :key="url" class="links__box">
+          <li><span>Long Url:</span> {{ url.longUrl }}</li>
+          <li class="green">
+            <span class="green">Short Url: </span> {{ url.shortUrl }}
+          </li>
+        </ul>
+        <button>Check Analytics</button>
+      </div>
+
+      <ul v-for="url in myCustomUrls" :key="url" class="links__box">
+        <li><span>Long Url:</span> {{ url.longUrl }}</li>
+        <li class="green">
+          <span class="green">Short Url: </span> {{ url.shortUrl }}
+        </li>
       </ul>
     </div>
   </section>
@@ -29,6 +41,7 @@ interface myUrls {
 }
 
 const myUrls: myUrls[] = reactive([]);
+const myCustomUrls: myUrls[] = reactive([]);
 
 const handleUpdateUrls = async () => {
   const urlRef = collection(db, "myUrls");
@@ -47,6 +60,7 @@ const handleUpdateUrls = async () => {
   }
 
   console.log(myUrls);
+  console.log(myCustomUrls);
 
   onSnapshot(urlQuery, (snapshot) => {
     snapshot.docs.map((doc) => {
@@ -81,16 +95,35 @@ section {
   width: 70%;
   margin-left: 12rem;
 }
-
+.inner__dashboard .box {
+  display: flex;
+  gap: 4rem;
+}
 h1 {
   font-size: 2rem;
-  margin-bottom: 2rem;
-  color: #fff;
+  margin-bottom: 4rem;
+  margin-top: 1rem;
+  color: aliceblue;
+  border-top: 4px solid #1974fe;
+  border-bottom: 4px solid #1974fe;
 }
 
-.inner__dashboard .links__box {
-    display: flex;
-    flex-direction: column;
+li {
+  margin-bottom: 1rem;
+  font-weight: bold;
+  padding: 0 1rem;
+  border-bottom: 2px solid #1974fe;
+  flex-direction: column;
+}
+
+.links__box li span {
+  background: rgba(68, 68, 241, 0.3);
+  margin-right: 2rem;
+  padding: 0.2rem;
+}
+
+.green {
+  color: green;
 }
 
 @media (max-width: 768px) {
@@ -98,7 +131,20 @@ h1 {
     margin-left: 1rem;
     width: 85%;
   }
+
+  .inner__dashboard .box {
+    gap: 2rem;
+  }
+
+  h1 {
+    text-align: center;
+  }
+
+  .inner__dashboard .box button {
+    margin-top: 1rem;
+  }
 }
+
 @media (max-width: 480px) {
   .inner__dashboard {
     margin-left: 1rem;

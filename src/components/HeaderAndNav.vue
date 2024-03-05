@@ -223,6 +223,11 @@ onAuthStateChanged(auth, (user) => {
   }
 }
 
+li {
+  border-bottom: 2px solid aliceblue;
+  margin-bottom: 1rem;
+}
+
 .dashboard__navlists p,
 .dashboard__navlists h5 {
   color: #fff;

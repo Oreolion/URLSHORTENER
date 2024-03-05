@@ -30,10 +30,21 @@
 
 <script setup lang="ts">
 import axios from "axios";
+import {
+  getDocs,
+  setDoc,
+  doc,
+  collection,
+  onSnapshot,
+  orderBy,
+  query,
+} from "firebase/firestore";
+import { db } from "../utils/firebase";
+
 
 import { ref, reactive } from "vue";
 
-interface myUrls {
+interface myCustomUrls {
   shortUrl: string;
   longUrl: string;
 }
@@ -42,7 +53,46 @@ const inputUrl = ref("");
 const outputUrl = ref("");
 const customText = ref("");
 
-const myUrls: myUrls[] = reactive([]);
+const myCustomUrls: myCustomUrls[] = reactive([]);
+
+const createUrl = async (data: { longUrl: string; shortUrl: string }) => {
+  try {
+    await setDoc(doc(db, "myCustomUrls", "0UPNpOS112cR7j138Sug"), data);
+    console.log(db);
+    console.log(data);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const handleUpdateUrls = async () => {
+  const urlRef = collection(db, "myCustomUrls");
+  const urlQuery = query(urlRef, orderBy("createdAt", "asc"));
+
+  // Get initial data
+  const querySnapshot = await getDocs(urlRef);
+
+  if (querySnapshot) {
+    querySnapshot.docs.map((doc: any) => {
+      console.log(doc.id, " => ", doc.data());
+      myCustomUrls.push(doc.data() as myCustomUrls);
+    });
+  } else {
+    console.log("No such document!");
+  }
+
+  console.log(myCustomUrls);
+
+  onSnapshot(urlQuery, (snapshot) => {
+    snapshot.docs.map((doc) => {
+      myCustomUrls.push(doc.data() as myCustomUrls);
+    });
+    console.log(myCustomUrls);
+  }),
+    (error: any) => {
+      console.log(error);
+    };
+};
 
 const customizeUrl = async () => {
   const endpoint = "https://api-ssl.bitly.com/v4/bitlinks";
@@ -67,7 +117,7 @@ const customizeUrl = async () => {
     console.log(response.data);
     outputUrl.value = response.data.link;
 
-    // handleUpdateUrls();
+    handleUpdateUrls();
   } catch (error) {
     console.error(error);
   }
@@ -76,10 +126,10 @@ const customizeUrl = async () => {
 const handleCustomizeLink = async () => {
   await customizeUrl();
 
-  //   createUrl({
-  //     longUrl: inputUrl.value,
-  //     shortUrl: outputUrl.value,
-  //   });
+    createUrl({
+      longUrl: inputUrl.value,
+      shortUrl: outputUrl.value,
+    });
 };
 
 const copyToClipBoard = () => {
@@ -140,7 +190,7 @@ input {
 }
 
 .link-input {
-  width: 90%;
+  width: 95%;
 }
 
 .custom-label {

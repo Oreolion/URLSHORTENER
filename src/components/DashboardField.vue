@@ -16,7 +16,7 @@
         <label for=""
           >Shortened Link: <br />
           <input type="text" v-model="outputUrl" />
-          <button>Copy Link</button>
+          <button @click.prevent="copyToClipBoard">Copy Link</button>
         </label>
       </form>
     </div>
@@ -28,7 +28,8 @@ import axios from "axios";
 import { ref, reactive } from "vue";
 import {
   getDocs,
-  setDoc, doc,
+  setDoc,
+  doc,
   collection,
   onSnapshot,
   orderBy,
@@ -48,7 +49,7 @@ const myUrls: myUrls[] = reactive([]);
 
 const createUrl = async (data: { longUrl: string; shortUrl: string }) => {
   try {
-    await setDoc(doc(db, "myUrls", "gupoXRsKklnGbvQtWccA" ), data);
+    await setDoc(doc(db, "myUrls", "gupoXRsKklnGbvQtWccA"), data);
     console.log(db);
     console.log(data);
   } catch (error) {
@@ -119,8 +120,13 @@ const handleLinkShortener = async () => {
     shortUrl: outputUrl.value,
   });
 
-//   inputUrl.value = "";
-//   outputUrl.value = "";
+ 
+};
+
+const copyToClipBoard = () => {
+   navigator.clipboard.writeText(outputUrl.value);
+     inputUrl.value = "";
+    outputUrl.value = "";
 };
 </script>
 
@@ -157,11 +163,11 @@ form {
 }
 
 label {
-    color: yellow;
+  color: yellow;
 }
 
 label + label {
-    color: green;
+  color: green;
 }
 
 input {
@@ -170,10 +176,15 @@ input {
   background-color: transparent;
   margin-right: 1rem;
   text-indent: 0.5rem;
+  border-bottom: 3px solid #1974fe;
+  box-shadow: 1px 4px 8px rgba(68, 68, 241, 0.5);
+
 }
 
 label + label > input {
-    color: green;
+  color: green;
+  border-bottom: 3px solid green;
+
 }
 
 button {
@@ -192,25 +203,22 @@ button {
     width: 85%;
   }
 
-
   input {
     width: 60%;
   }
 
-  
-button {
-  width: 30%;
-}
+  button {
+    width: 30%;
+  }
 
-form {
+  form {
     padding: 0 1rem;
-}
+  }
 }
 
-
-@media (max-width: 320px ) {
-    h1 {
-        font-size: 1.7rem;
-    }
+@media (max-width: 320px) {
+  h1 {
+    font-size: 1.7rem;
+  }
 }
 </style>

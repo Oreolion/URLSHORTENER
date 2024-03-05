@@ -73,6 +73,10 @@ input {
   background-color: transparent;
   margin-right: 1rem;
   text-indent: 0.5rem;
+  box-shadow: 1px 4px 8px rgba(68, 68, 241, 0.5);
+  border-bottom: 2px solid #1974fe;
+
+
 }
 
 label + label > input {

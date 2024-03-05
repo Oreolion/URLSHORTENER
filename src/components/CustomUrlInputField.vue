@@ -1,22 +1,27 @@
 <template>
-    <section>
+  <section>
     <div class="inner__dashboard">
       <h1>Customize Your URL</h1>
       <form action="">
         <label for="">
           Input Your Link: <br />
           <input
+            class="link-input"
             v-model="inputUrl"
             type="text"
             placeholder="e.g. https://developer.mozilla.org/en-US/docs/Web"
           />
-          <button @click="handleLinkShortener">Shorten Link</button>
+        </label>
+        <label for="" class="custom-label">
+          Input Custom Path: <br />
+          <input v-model="customText" type="text" placeholder="e.g. mysite" />
+          <button @click="handleCustomizeLink">Customize Link</button>
         </label>
 
         <label for=""
-          >Shortened Link: <br />
+          >Customized Link: <br />
           <input type="text" v-model="outputUrl" />
-          <button>Copy Link</button>
+          <button @click.prevent="copyToClipBoard">Copy Link</button>
         </label>
       </form>
     </div>
@@ -24,7 +29,64 @@
 </template>
 
 <script setup lang="ts">
+import axios from "axios";
 
+import { ref, reactive } from "vue";
+
+interface myUrls {
+  shortUrl: string;
+  longUrl: string;
+}
+
+const inputUrl = ref("");
+const outputUrl = ref("");
+const customText = ref("");
+
+const myUrls: myUrls[] = reactive([]);
+
+const customizeUrl = async () => {
+  const endpoint = "https://api-ssl.bitly.com/v4/bitlinks";
+  const accessToken = "4e8b64db46cf45337c5fcdc3ad50be2a9e7525b9";
+
+  try {
+    const response = await axios.post(
+      endpoint,
+      {
+        long_url: inputUrl.value,
+        domain: "bit.ly",
+        custom_bitlink: customText.value,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    console.log(response.data);
+    outputUrl.value = response.data.link;
+
+    // handleUpdateUrls();
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+const handleCustomizeLink = async () => {
+  await customizeUrl();
+
+  //   createUrl({
+  //     longUrl: inputUrl.value,
+  //     shortUrl: outputUrl.value,
+  //   });
+};
+
+const copyToClipBoard = () => {
+  navigator.clipboard.writeText(outputUrl.value);
+  inputUrl.value = "";
+  outputUrl.value = "";
+};
 </script>
 
 <style scoped>
@@ -60,11 +122,11 @@ form {
 }
 
 label {
-    color: yellow;
+  color: yellow;
 }
 
 label + label {
-    color: green;
+  color: green;
 }
 
 input {
@@ -73,10 +135,20 @@ input {
   background-color: transparent;
   margin-right: 1rem;
   text-indent: 0.5rem;
+  border-bottom: 2px solid #1974fe;
+  box-shadow: 1px 4px 8px rgba(68, 68, 241, 0.5);
+}
+
+.link-input {
+  width: 90%;
+}
+
+.custom-label {
+  color: yellow;
 }
 
 label + label > input {
-    color: green;
+  color: green;
 }
 
 button {
@@ -95,25 +167,22 @@ button {
     width: 85%;
   }
 
-
   input {
     width: 60%;
   }
 
-  
-button {
-  width: 30%;
-}
+  button {
+    width: 30%;
+  }
 
-form {
+  form {
     padding: 0 1rem;
-}
+  }
 }
 
-
-@media (max-width: 320px ) {
-    h1 {
-        font-size: 1.7rem;
-    }
+@media (max-width: 320px) {
+  h1 {
+    font-size: 1.7rem;
+  }
 }
 </style>

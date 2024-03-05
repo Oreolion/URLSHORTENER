@@ -43,6 +43,8 @@ button {
   height: 3rem;
   border: none;
   cursor: pointer;
+  box-shadow: 1px 4px 8px rgba(68, 68, 241, 0.5);
+
 }
 
 button:hover {

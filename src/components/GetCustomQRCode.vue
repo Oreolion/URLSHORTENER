@@ -1,5 +1,5 @@
 <template>
-    <section>
+  <section>
     <div class="inner__dashboard">
       <h1>Get A Custom QR Code</h1>
       <form action="">
@@ -7,15 +7,15 @@
           Input Your Link: <br />
           <input
             v-model="inputUrl"
-            type="text"
+            type="url"
             placeholder="e.g. https://developer.mozilla.org/en-US/docs/Web"
           />
-          <button @click="handleLinkShortener">Shorten Link</button>
+          <button @click="handleLink">Shorten Link</button>
         </label>
 
         <label for=""
           >Shortened Link: <br />
-          <input type="text" v-model="outputUrl" />
+          <input type="url" v-model="outputUrl" />
           <button>Copy Link</button>
         </label>
       </form>
@@ -24,7 +24,89 @@
 </template>
 
 <script setup lang="ts">
+import axios from "axios";
 
+import { ref, reactive } from "vue";
+
+interface myUrls {
+  shortUrl: string;
+  longUrl: string;
+}
+
+const inputUrl = ref("");
+const outputUrl = ref("");
+
+const myUrls: myUrls[] = reactive([]);
+
+const getUrl = async () => {
+  const endpoint = "https://api-ssl.bitly.com/v4/qr-codes";
+  const accessToken = "f099c414948f81bd68e28a4d9319ebf9a8cc17b7";
+
+  try {
+    const response = await axios.post(
+      endpoint,
+      {
+        title: "Default QR Code",
+        group_guid: "Ba1bc23dE4F",
+        destination: { bitlink_id: "bit.ly/abc123" },
+        archived: false,
+        render_customizations: {
+          background_color: "#ffffff",
+          dot_pattern_color: "#000000",
+          dot_pattern_type: "standard",
+          corners: {
+            corner_1: {
+              inner_color: "#000000",
+              outer_color: "#000000",
+              shape: "standard",
+            },
+            corner_2: {
+              inner_color: "#000000",
+              outer_color: "#000000",
+              shape: "standard",
+            },
+            corner_3: {
+              inner_color: "#000000",
+              outer_color: "#000000",
+              shape: "standard",
+            },
+          },
+          branding: { bitly_brand: true },
+          spec_settings: { error_correction: 4 },
+        },
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    console.log(response.data);
+    outputUrl.value = response.data.link;
+
+    // handleUpdateUrls();
+  } catch (error) {
+    console.error(error);
+    console.error(error.message);
+  }
+};
+
+const handleLink = async () => {
+  await getUrl();
+
+  //   createUrl({
+  //     longUrl: inputUrl.value,
+  //     shortUrl: outputUrl.value,
+  //   });
+};
+
+const copyToClipBoard = () => {
+  navigator.clipboard.writeText(outputUrl.value);
+  inputUrl.value = "";
+  outputUrl.value = "";
+};
 </script>
 
 <style scoped>
@@ -60,11 +142,11 @@ form {
 }
 
 label {
-    color: yellow;
+  color: yellow;
 }
 
 label + label {
-    color: green;
+  color: green;
 }
 
 input {
@@ -75,12 +157,10 @@ input {
   text-indent: 0.5rem;
   box-shadow: 1px 4px 8px rgba(68, 68, 241, 0.5);
   border-bottom: 2px solid #1974fe;
-
-
 }
 
 label + label > input {
-    color: green;
+  color: green;
 }
 
 button {
@@ -99,25 +179,22 @@ button {
     width: 85%;
   }
 
-
   input {
     width: 60%;
   }
 
-  
-button {
-  width: 30%;
-}
+  button {
+    width: 30%;
+  }
 
-form {
+  form {
     padding: 0 1rem;
-}
+  }
 }
 
-
-@media (max-width: 320px ) {
-    h1 {
-        font-size: 1.7rem;
-    }
+@media (max-width: 320px) {
+  h1 {
+    font-size: 1.7rem;
+  }
 }
 </style>

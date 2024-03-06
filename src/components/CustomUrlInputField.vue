@@ -40,9 +40,10 @@ import {
   query,
 } from "firebase/firestore";
 import { db } from "../utils/firebase";
-
-
 import { ref, reactive } from "vue";
+
+
+
 
 interface myCustomUrls {
   shortUrl: string;
@@ -96,7 +97,7 @@ const handleUpdateUrls = async () => {
 
 const customizeUrl = async () => {
   const endpoint = "https://api-ssl.bitly.com/v4/bitlinks";
-  const accessToken = "f099c414948f81bd68e28a4d9319ebf9a8cc17b7";
+  const accessToken ="f099c414948f81bd68e28a4d9319ebf9a8cc17b7";
 
   try {
     const response = await axios.post(
@@ -126,10 +127,10 @@ const customizeUrl = async () => {
 const handleCustomizeLink = async () => {
   await customizeUrl();
 
-    createUrl({
-      longUrl: inputUrl.value,
-      shortUrl: outputUrl.value,
-    });
+  createUrl({
+    longUrl: inputUrl.value,
+    shortUrl: outputUrl.value,
+  });
 };
 
 const copyToClipBoard = () => {

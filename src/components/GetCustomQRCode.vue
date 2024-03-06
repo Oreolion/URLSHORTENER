@@ -16,7 +16,7 @@
         <label for=""
           >Shortened Link: <br />
           <input type="url" v-model="outputUrl" />
-          <button>Copy Link</button>
+          <button @click="copyToClipBoard">Copy Link</button>
         </label>
       </form>
     </div>
@@ -89,7 +89,6 @@ const getUrl = async () => {
     // handleUpdateUrls();
   } catch (error) {
     console.error(error);
-    console.error(error.message);
   }
 };
 

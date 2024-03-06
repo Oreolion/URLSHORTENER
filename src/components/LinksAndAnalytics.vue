@@ -3,7 +3,7 @@
     <div class="inner__dashboard">
       <h1>SHORTENED LINKS AND ANALYTICS</h1>
       <div class="box">
-        <ul v-for="url in myUrls" :key="url" class="links__box">
+        <ul v-for="(url, i) in myUrls" :key="i" class="links__box">
           <li><span>Long Url:</span> {{ url.longUrl }}</li>
           <li class="green">
             <span class="green">Short Url: </span> {{ url.shortUrl }}
@@ -12,7 +12,7 @@
         <button>Check Analytics</button>
       </div>
 
-      <ul v-for="url in myCustomUrls" :key="url" class="links__box">
+      <ul v-for="(url, i) in myCustomUrls" :key="i" class="links__box">
         <li><span>Long Url:</span> {{ url.longUrl }}</li>
         <li class="green">
           <span class="green">Short Url: </span> {{ url.shortUrl }}
@@ -26,8 +26,6 @@
 import { reactive, onMounted } from "vue";
 import {
   getDocs,
-  setDoc,
-  doc,
   collection,
   onSnapshot,
   orderBy,

@@ -26,7 +26,8 @@
                 v-model="v$.email.$model"
                 placeholder="Email address or username"
               />
-              <small v-if="v$.email.$errors.length > 0 && v$.email.$errors[0]">
+              <small v-if="v$.email.$errors.length" style="
+                  color: red;" >
                 {{ v$.email.$errors[0].$message }}
               </small>
             </label>

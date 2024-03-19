@@ -92,7 +92,10 @@ const handleSignUp = async () => {
                 placeholder="Email"
               />
 
-              <small v-if="v$.email.$errors.length > 0 && v$.email.$errors[0]">
+              <small
+                style="color: red"
+                v-if="v$.email.$errors.length > 0 && v$.email.$errors[0]"
+              >
                 {{ v$.email.$errors[0].$message }}
               </small>
             </label>
@@ -102,7 +105,7 @@ const handleSignUp = async () => {
                 v-model="v$.password.$model"
                 placeholder="Password"
               />
-              <small v-if="v$.password.$errors.length">{{
+              <small style="color: red" v-if="v$.password.$errors.length">{{
                 v$.password.$errors[0].$message
               }}</small>
             </label>
@@ -112,9 +115,11 @@ const handleSignUp = async () => {
                 v-model="v$.confirmPassword.$model"
                 placeholder="Retype Password"
               />
-              <small v-if="v$.confirmPassword.$errors.length">{{
-                v$.confirmPassword.$errors[0].$message
-              }}</small>
+              <small
+                style="color: red"
+                v-if="v$.confirmPassword.$errors.length"
+                >{{ v$.confirmPassword.$errors[0].$message }}</small
+              >
             </label>
 
             <div class="btn-box">

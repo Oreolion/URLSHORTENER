@@ -126,6 +126,12 @@ h3 {
   align-items: center;
 }
 
+nav ul li a.router-link-exact-active {
+    background: rgb(193, 193, 233);
+    padding: 1rem;
+}
+
+
 .logo {
   margin: 2rem 0;
 }

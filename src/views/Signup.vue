@@ -47,6 +47,7 @@ const handleSignUp = async () => {
       localStorage.setItem("isLoggedIn", "true");
 
       router.push("/dashboard");
+      toast.success("You are Logged In");
     }
   } catch (error: any) {
     console.log(error);
@@ -69,6 +70,9 @@ const handleSignUp = async () => {
               <router-link to="/login">LOGIN</router-link>
             </button>
           </div>
+          <button>
+        <router-link to="/">&lt;&lt;&lt; Go Home</router-link>
+      </button>
           <div class="break">
             <span></span>
             <p>Or</p>

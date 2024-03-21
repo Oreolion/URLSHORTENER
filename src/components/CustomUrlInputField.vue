@@ -41,6 +41,7 @@ import {
 } from "firebase/firestore";
 import { db } from "../utils/firebase";
 import { ref, reactive } from "vue";
+import { toast } from "vue3-toastify";
 
 
 
@@ -119,8 +120,10 @@ const customizeUrl = async () => {
     outputUrl.value = response.data.link;
 
     handleUpdateUrls();
-  } catch (error) {
+    toast.success("Url Shortened successfully");
+  } catch (error: any) {
     console.error(error);
+    toast.error(error.message);
   }
 };
 

@@ -12,6 +12,9 @@
               <router-link to="/login">LOGIN</router-link>
             </button>
           </div>
+          <button>
+            <router-link to="/">&lt;&lt;&lt; Go Home</router-link>
+          </button>
 
           <div class="break">
             <span></span>
@@ -26,8 +29,7 @@
                 v-model="v$.email.$model"
                 placeholder="Email address or username"
               />
-              <small v-if="v$.email.$errors.length" style="
-                  color: red;" >
+              <small v-if="v$.email.$errors.length" style="color: red">
                 {{ v$.email.$errors[0].$message }}
               </small>
             </label>
@@ -45,8 +47,7 @@
                 "
                 >Forgot your password?</small
               >
-              <small v-if="v$.password.$errors.length"  style="
-                  color: red;">{{
+              <small v-if="v$.password.$errors.length" style="color: red">{{
                 v$.password.$errors[0].$message
               }}</small>
             </label>
@@ -114,6 +115,7 @@ const handleLogin = async () => {
       localStorage.setItem("isLoggedIn", "true");
 
       router.push("/dashboard");
+      toast.success("You are Logged In");
     }
   } catch (error: any) {
     console.log(error);

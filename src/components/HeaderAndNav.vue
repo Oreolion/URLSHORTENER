@@ -223,6 +223,10 @@ onAuthStateChanged(auth, (user) => {
   }
 }
 
+nav ul li a.router-link-exact-active {
+  background: rgb(193, 193, 233);
+}
+
 li {
   border-bottom: 2px solid aliceblue;
   margin-bottom: 1rem;

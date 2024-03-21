@@ -50,7 +50,7 @@ const router = createRouter({
 
 // global navigation guard
 // router.beforeEach(
-//   async (to: RouteLocationNormalized, next: NavigationGuardNext) => {
+//   async (to, next) => {
 //     const isLoggedIn = !!localStorage.getItem("isLoggedIn");
 
 //     if (to.matched.some((item) => item.meta.requiresAuth)) {

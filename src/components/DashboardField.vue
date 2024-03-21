@@ -26,6 +26,7 @@
 <script setup lang="ts">
 import axios from "axios";
 import { ref, reactive } from "vue";
+import { toast } from "vue3-toastify";
 import {
   getDocs,
   setDoc,
@@ -107,15 +108,17 @@ const shortenUrl = async () => {
     console.log(response);
     outputUrl.value = response.data.link;
     handleUpdateUrls();
-  } catch (error) {
+    toast.success("Url Shortened successfully");
+  } catch (error: any) {
     console.error(error);
+    toast.error(error.message);
   }
 };
 
 const handleLinkShortener = async () => {
   await shortenUrl();
 
-  createUrl({
+  await createUrl({
     longUrl: inputUrl.value,
     shortUrl: outputUrl.value,
   });
